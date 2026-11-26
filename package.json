@@ -1,0 +1,36 @@
+{
+  "name": "nautix-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Smart contracts, proving circuit and tooling for the Nautix shielded pool: deposit in public, hold and send in private, withdraw whenever you like",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "type": "module",
+  "scripts": {
+    "build:circuit": "node scripts/build-circuit.mjs",
+    "build:hasher": "node scripts/gen-hasher.mjs",
+    "setup:key": "node scripts/setup-proving-key.mjs --network testnet",
+    "gen:fixtures": "node scripts/gen-fixtures.mjs",
+    "test": "node --test tests/*.test.mjs && forge test",
+    "test:circuit": "node --test tests/circuit.test.mjs",
+    "test:protocol": "node --test tests/protocol.test.mjs",
+    "test:contracts": "forge test",
+    "test:e2e": "node scripts/smoke-test.mjs",
+    "testnet:deploy": "forge script script/Deploy.s.sol --rpc-url $RPC_URL --broadcast --slow",
+    "testnet:smoke": "node scripts/smoke-test.mjs --network testnet",
+    "audit": "node scripts/audit.mjs --network testnet",
+    "testnet:record": "node scripts/record-deployment.mjs --network testnet"
+  },
+  "devDependencies": {
+    "@noble/curves": "2.4.0",
+    "@noble/hashes": "2.4.0",
+    "circom_runtime": "0.1.28",
+    "circomlib": "2.0.5",
+    "circomlibjs": "0.1.7",
+    "poseidon-lite": "0.3.0",
+    "snarkjs": "0.7.6",
+    "viem": "2.58.6"
+  }
+}
